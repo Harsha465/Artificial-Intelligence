@@ -1,7 +1,4 @@
-# Artificial-Intelligence
- # 1.Program to implement tic-tac-toe game playing
-
- # source code: 
+ 
 import os
 board=[' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 player=1
