@@ -39,7 +39,6 @@ while x!=4:
         y=n
         x-=t
         print(x,y)
-
-print('(',x,',',y,')')
-if x==y:
+if x==4:
     print("goal state reached : ")
+    print('(',x,',',y,')')
