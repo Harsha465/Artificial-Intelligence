@@ -4,39 +4,39 @@ def printSol(board):
         for j in range(N):
             print(board[i][j],end=" ")
         print()
-def isSafe(row,col,slashcode,backslashcode,rowlookup,slashcodelookup,backslashcodelookup):
-    if slashcodelookup[slashcode[row][col]] or backslashcodelookup[backslashcode[row][col]] or rowlookup[row]:
+def isSafe(row,col,sc,bsc,rowlookup,scl,bscl):
+    if scl[sc[row][col]] or bscl[bsc[row][col]] or rowlookup[row]:
         return False
     return True
-def solveNQueensUtil(board,col,slashcode,backslashcode,rowlookup,slashcodelookup,backslashcodelookup):
+def solveNQueensUtil(board,col,sc,bsc,rowlookup,scl,bscl):
     if col>=N:
         return True
     for i in range(N):
-        if isSafe(i,col,slashcode,backslashcode,rowlookup,slashcodelookup,backslashcodelookup):
+        if isSafe(i,col,sc,bsc,rowlookup,scl,bscl):
             board[i][col]=1
             rowlookup[i]=True
-            slashcodelookup[slashcode[i][col]]=True
-            backslashcodelookup[backslashcode[i][col]]=True
-            if solveNQueensUtil(board,col+1,slashcode,backslashcode,rowlookup,slashcodelookup,backslashcodelookup):
+            scl[sc[i][col]]=True
+            bscl[bsc[i][col]]=True
+            if solveNQueensUtil(board,col+1,sc,bsc,rowlookup,scl,bscl):
                 return True
             board[i][col]=0
             rowlookup[i]=False
-            slashcodelookup[slashcode[i][col]]=False
-            backslashcodelookup[backslashcode[i][col]]=False
+            scl[sc[i][col]]=False
+            bscl[bsc[i][col]]=False
     return False
 def solveNQueens():
     board=[[0 for i in range(N)]for j in range(N)]
-    slashcode=[[0 for i in range(N)]for j in range(N)]
-    backslashcode=[[0 for i in range(N)]for j in range(N)]
+    sc=[[0 for i in range(N)]for j in range(N)]
+    bsc=[[0 for i in range(N)]for j in range(N)]
     rowlookup=[False]*N
     x=2*N-1
-    slashcodelookup=[False]*x
-    backslashcodelookup=[False]*x
+    scl=[False]*x
+    bscl=[False]*x
     for rr in range(N):
         for cc in range(N):
-            slashcode[rr][cc]=rr+cc
-            backslashcode[rr][cc]=rr-cc+N-1
-    if solveNQueensUtil(board,0,slashcode,backslashcode,rowlookup,slashcodelookup,backslashcodelookup)==False:
+            sc[rr][cc]=rr+cc
+            bsc[rr][cc]=rr-cc+N-1
+    if solveNQueensUtil(board,0,sc,bsc,rowlookup,scl,bscl)==False:
         print("solution does not exist")
         return False
     printSol(board)
