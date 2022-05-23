@@ -2,11 +2,13 @@ x=0
 y=0
 m=5
 n=3
+rules=[]
 print("initial state = (0,0)")
 print("capacities=(5,3)")
 print("goal state =(x,y)")
 while x!=4:
     r=int(input("enter rule number"))
+    rules.append(r)
     if r==1:
         x=m
         print(x,y)
@@ -43,3 +45,4 @@ while x!=4:
 print('(',x,',',y,')')
 if x==y:
     print("goal state reached : ")
+    print(rules)
